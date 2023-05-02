@@ -1,8 +1,11 @@
 import { Fragment } from "react";
 import NewMeetUpForm from "../../components/meetups/NewMeetupForm";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 function NewMeetPage() {
+  const router = useRouter();
+
   async function addMeetupHandler(enteredMeetupData) {
     const response = await fetch("/api/new-meetup", {
       method: "POST",
@@ -11,6 +14,10 @@ function NewMeetPage() {
     });
 
     const data = await response.json();
+
+    console.log(data);
+
+    router.push("/");
   }
 
   return (
